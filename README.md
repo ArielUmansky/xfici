@@ -9,7 +9,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 Cualquiera está invitado a aportar ideas y/o código
 
 # xFICI (Pseudo-english)
-xFICI is a social network developed in Ruby on Rails, who aims to the creation of generic events (but specialized in movies) between friends or entities, bringing the feature of choose democratically the structure of such event.
+xFICI is a social network developed in Ruby on Rails, who aims to the creation of generic events (but specialized in movies) between friends or entities, bringing the feature of choosing democratically the structure of such event.
 
 xFICI was developed by Ariel Umansky in the context of a process of training in Ruby on Rails, guided by the following book:
 
