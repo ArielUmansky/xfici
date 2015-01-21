@@ -30,7 +30,13 @@ class User < ActiveRecord::Base
   attr_accessible :name, :fici_name, :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
+  has_many :microposts, dependent: :destroy
+
   validates :name, presence: true, length: {maximum: 50}
 
   validates :email, presence: true, uniqueness: {case_sensitive: false}
+
+  def feed
+  	Micropost.where("user_id  = ?", id)
+  end
 end
