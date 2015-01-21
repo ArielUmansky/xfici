@@ -2,7 +2,7 @@ Xfici::Application.routes.draw do
 
   devise_for :users
 
-  resources :users, only: [:show, :index]
+  resources :users, only: [:show, :index, :destroy]
 
   root to: 'static_pages#home'
 
