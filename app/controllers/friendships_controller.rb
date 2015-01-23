@@ -62,7 +62,7 @@ class FriendshipsController < ApplicationController
 
 	def create
 		Friendship.request(@user, @friend)
-		redirect_to root_path
+		redirect_to @friend
 	end
 
 	private

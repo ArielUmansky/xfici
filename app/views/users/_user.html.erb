@@ -1,12 +1,28 @@
 <li>
 	<%= link_to user.name, user %>
-	<% if current_user.admin? && current_user!=user %>
-		|
-		<%= link_to "Delete", user, method: :delete, confirm: "You sure?" %>
-	<% end %>
 	<% if current_user!=user %>
-		|
-		<%= link_to "Request Friendship", friendships_path(:friend_id => user), method: :post %>
-	<% end %>
+		<% if current_user.admin? %>
+			|
+			<%= link_to "Delete", user, method: :delete, confirm: "You sure?" %>
+		<% end %>
 
+		<% if current_user.pending_friends.include?(user) %>
+			| Waiting Answer
+		<% else %>
+			<% if current_user.requested_friends.include?(user) %>
+				|
+				<%= link_to "Accept Friendship", friendships_path(:friend_id => user), method: :post %>
+				|
+				<%= link_to "Reject Friendship", friendship_path(:friend_id => user), method: :delete %>
+			<% else %>
+				<% if current_user.friends.include?(user) %>
+					|
+					<%= link_to "Cancel Friendship", friendship_path(:friend_id => user), method: :delete %>
+				<% else %>
+					|
+					<%= link_to "Request Friendship", friendships_path(:friend_id => user), method: :post %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
 </li>

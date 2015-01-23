@@ -11,7 +11,7 @@ class Micropost < ActiveRecord::Base
 
   # Returns microposts from the friends of the user
   def self.from_users_friends(user)
-  	friends_ids = "SELECT friend_id FROM friendships WHERE user_id = :user_id"
+  	friends_ids = "SELECT friend_id FROM friendships WHERE user_id = :user_id and status='accepted'"
   	where("user_id IN (#{friends_ids}) OR user_id = :user_id", user_id: user.id)
   end
 end
