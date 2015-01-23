@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, only: [:index, :edit, :update, :show, :destroy]
+  before_filter :authenticate_user!, only: [:index, :edit, :update, :show, :destroy, :friends, :requested_friends, :pending_friends]
   before_filter :admin_user, only: :destroy
 
   def show
@@ -15,6 +15,27 @@ class UsersController < ApplicationController
   	User.find(params[:id]).destroy
   	flash[:notice] = "User destroyed."
   	redirect_to users_path
+  end
+
+  def friends
+  	@title = "Friends"
+  	@user = User.find(params[:id])
+  	@users = @user.friends.paginate(page: params[:page])
+  	render 'show_friends'
+  end
+
+  def pending_friends
+  	@title = "Pending Friendship Requests"
+  	@user = User.find(params[:id])
+  	@users = @user.pending_friends.paginate(page: params[:page])
+  	render 'show_friends'
+  end
+
+  def requested_friends
+  	@title = "Requested Friendships"
+  	@user = User.find(params[:id])
+  	@users = @user.requested_friends.paginate(page: params[:page])
+  	render 'show_friends'
   end
 
   private 

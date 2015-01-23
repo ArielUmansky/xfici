@@ -32,11 +32,42 @@ class User < ActiveRecord::Base
 
   has_many :microposts, dependent: :destroy
 
+  has_many :friendships, dependent: :destroy
+
+  has_many :friends, :through => :friendships,
+  					 :conditions => "status = 'accepted'",
+  					 :order => :name
+
+  has_many :requested_friends, 
+  			:through => :friendships,
+  			:source => :friend,
+  			:conditions => "status = 'requested'",
+  			:order => :created_at
+
+  has_many :pending_friends, 
+  			:through => :friendships,
+  			:source => :friend,
+  			:conditions => "status = 'pending'",
+  			:order => :created_at
+
+
   validates :name, presence: true, length: {maximum: 50}
 
   validates :email, presence: true, uniqueness: {case_sensitive: false}
 
   def feed
-  	Micropost.where("user_id  = ?", id)
+  	Micropost.from_users_friends(self)
+  end
+
+  def pending?(friend)
+  	pending_friends.include?(friend)
+  end
+
+  def requested?(friend)
+  	requested_friends.include?(friend)
+  end
+
+  def friend?(friend)
+  	friends.include?(friend)
   end
 end

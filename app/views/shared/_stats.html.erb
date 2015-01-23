@@ -1,0 +1,21 @@
+<% @user ||= current_user %>
+<div class="stats">
+	<a href="<%= friends_user_path(@user) %>">
+		<strong id="Friends" class="stat">
+			<%= @user.friends.count %>
+		</strong>
+		Friends
+	</a>
+	<a href="<%= pending_friends_user_path(@user) %>">
+		<strong id="PendingFriends" class="stat">
+			<%= @user.pending_friends.count %>
+		</strong>
+		Pending
+	</a>
+	<a href="<%= requested_friends_user_path(@user) %>">
+		<strong id="RequestedFriends" class="stat">
+			<%= @user.requested_friends.count %>
+		</strong>
+		Requested
+	</a>
+</div>

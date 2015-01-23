@@ -1,0 +1,12 @@
+<div class="row">
+	<%= form_for(current_user.friendships.find_by_user_id_and_friend_id(current_user, @user), html: {method: :put}, remote: true) do |f| %>
+		<div><%= f.hidden_field :user_id %></div>
+		<div><%= f.hidden_field :friend_id %></div>
+		<%= f.submit "Accept Friendship", class: "btn btn-large btn-primary" %>
+	<% end %>
+	<%= form_for(current_user.friendships.find_by_user_id_and_friend_id(current_user, @user), html: {method: :delete}, remote: true) do |f| %>
+		<div><%= f.hidden_field :user_id %></div>
+		<div><%= f.hidden_field :friend_id %></div>
+		<%= f.submit "Reject Friendship", class: "btn btn-large btn-primary" %>
+	<% end %>
+</div>
