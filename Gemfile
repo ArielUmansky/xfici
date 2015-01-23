@@ -6,6 +6,10 @@ gem 'devise', '> 1.1'
 gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
+
+# Translations
+gem 'http_accept_language'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -14,6 +18,7 @@ group :development do
 	gem 'sqlite3', '1.3.5'
 	gem 'rspec-rails', '2.9.0'
 	gem 'annotate', '~> 2.4.1.beta'
+	gem 'pry'
 end
 
 # Gems used only for assets and not required

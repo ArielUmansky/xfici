@@ -1,0 +1,4 @@
+en:
+  shared:
+    time_ago: Posted %{in_words} ago
+    delete: delete

@@ -4,10 +4,10 @@
 	</span>
 	<span class="content"><%= feed_item.content %></span>
 	<span class="timestamp">
-		Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+		<%= I18n.t(".shared.time_ago", in_words: time_ago_in_words(feed_item.created_at) )%>
 	</span>
 	<% if current_user == feed_item.user %>
-		<%= link_to "delete", feed_item, method: :delete,
+		<%= link_to I18n.t(".shared.delete"), feed_item, method: :delete,
 		confirm: "You sure?",
 		title: feed_item.content %>
 	<% end %>

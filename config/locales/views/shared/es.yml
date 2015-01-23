@@ -1,0 +1,4 @@
+es:
+  shared:
+    time_ago: Posteado hace %{in_words}
+    delete: eliminar
