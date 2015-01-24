@@ -7,7 +7,8 @@
 		<% end %>
 
 		<% if current_user.pending_friends.include?(user) %>
-			| Waiting Answer
+			|
+			<%= link_to "Cancel Friendship", friendship_path(user, :friendship => { :friend_id => user.id }), method: :delete %>
 		<% else %>
 			<% if current_user.requested_friends.include?(user) %>
 				|
@@ -17,7 +18,7 @@
 			<% else %>
 				<% if current_user.friends.include?(user) %>
 					|
-					<%= link_to "Cancel Friendship", friendship_path(user, :friendship => { :friend_id => user.id }), method: :delete %>
+					<%= link_to "Delete Friendship", friendship_path(user, :friendship => { :friend_id => user.id }), method: :delete %>
 				<% else %>
 					|
 					<%= link_to "Request Friendship", friendships_path(:friendship => { :friend_id => user.id }), method: :post %>

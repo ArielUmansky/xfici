@@ -9,7 +9,6 @@ class FriendshipsController < ApplicationController
 		else
 			flash[:notice] = "No Friendship Request"
 		end
-		redirect_to root_path
 	end
 
 	def decline
@@ -19,7 +18,6 @@ class FriendshipsController < ApplicationController
 		else
 			flash[:notice] = "No Friendship Request"
 		end
-		redirect_to root_path
 	end
 
 	def cancel 
@@ -29,7 +27,6 @@ class FriendshipsController < ApplicationController
     	else
       		flash[:notice] = "No Friendship request"
     	end
-    	redirect_to root_path
   	end
 
 	def delete
@@ -39,7 +36,7 @@ class FriendshipsController < ApplicationController
 	    else
 	      flash[:notice] = "No Friendship request"
 	    end
-	    redirect_to root_path
+	    
 	end
 
 	def index
@@ -52,17 +49,29 @@ class FriendshipsController < ApplicationController
 		else
 			if @user.requested_friends.include?(@friend)
 				decline
+			else 
+				if @user.pending_friends.include?(@friend)
+					cancel
+				end
 			end
+		end
+		respond_to do |format|
+			format.js
 		end
 	end
 
 	def update
 		accept
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	def create
 		Friendship.request(@user, @friend)
-		redirect_to @friend
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	private

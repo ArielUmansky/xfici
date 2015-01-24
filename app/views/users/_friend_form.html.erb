@@ -8,6 +8,8 @@
 			<% else %>
 				<% if !current_user.friend?(@user) %>
 					<%= render 'request_friendship' %>
+				<% else %>
+					<%= render 'delete_friendship' %>
 				<% end %>
 			<% end %>
 		<% end %>
