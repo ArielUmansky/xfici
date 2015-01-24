@@ -56,6 +56,7 @@ class FriendshipsController < ApplicationController
 			end
 		end
 		respond_to do |format|
+			format.html { redirect_to @friend }
 			format.js
 		end
 	end
@@ -63,6 +64,7 @@ class FriendshipsController < ApplicationController
 	def update
 		accept
 		respond_to do |format|
+			format.html { redirect_to @friend }
 			format.js
 		end
 	end
@@ -70,6 +72,7 @@ class FriendshipsController < ApplicationController
 	def create
 		Friendship.request(@user, @friend)
 		respond_to do |format|
+			format.html { redirect_to @friend }
 			format.js
 		end
 	end
