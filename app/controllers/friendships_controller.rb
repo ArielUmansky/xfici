@@ -3,8 +3,8 @@ class FriendshipsController < ApplicationController
 	before_filter :setup_friends
 
 	def accept
-		if @user.requested_friends.include?(@friend)
-			Friendship.accept(@user, @friend)
+		if current_user.requested_friends.include?(@friend)
+			Friendship.accept(current_user, @friend)
 			flash[:notice] = "Friendship Accepted"
 		else
 			flash[:notice] = "No Friendship Request"
@@ -12,8 +12,8 @@ class FriendshipsController < ApplicationController
 	end
 
 	def decline
-		if @user.requested_friends.include?(@friend)
-			Friendship.breakup(@user, @friend)
+		if current_user.requested_friends.include?(@friend)
+			Friendship.breakup(current_user, @friend)
 			flash[:notice] = "Friendship Rejected"
 		else
 			flash[:notice] = "No Friendship Request"
@@ -21,8 +21,8 @@ class FriendshipsController < ApplicationController
 	end
 
 	def cancel 
-		if @user.pending_friends.include?(@friend)
-      		Friendship.breakup(@user, @friend)
+		if current_user.pending_friends.include?(@friend)
+      		Friendship.breakup(current_user, @friend)
       		flash[:notice] = "Friendship Canceled"
     	else
       		flash[:notice] = "No Friendship request"
@@ -30,8 +30,8 @@ class FriendshipsController < ApplicationController
   	end
 
 	def delete
-	    if @user.friends.include?(@friend)
-	      Friendship.breakup(@user, @friend)
+	    if current_user.friends.include?(@friend)
+	      Friendship.breakup(current_user, @friend)
 	      flash[:notice] = "Friendship Deleted"
 	    else
 	      flash[:notice] = "No Friendship request"
@@ -44,13 +44,13 @@ class FriendshipsController < ApplicationController
 	end
 
 	def destroy 
-		if @user.friends.include?(@friend)
+		if current_user.friends.include?(@friend)
 			delete
 		else
-			if @user.requested_friends.include?(@friend)
+			if current_user.requested_friends.include?(@friend)
 				decline
 			else 
-				if @user.pending_friends.include?(@friend)
+				if current_user.pending_friends.include?(@friend)
 					cancel
 				end
 			end
@@ -70,7 +70,7 @@ class FriendshipsController < ApplicationController
 	end
 
 	def create
-		Friendship.request(@user, @friend)
+		Friendship.request(current_user, @friend)
 		respond_to do |format|
 			format.html { redirect_to @friend }
 			format.js
@@ -80,7 +80,6 @@ class FriendshipsController < ApplicationController
 	private
 
 		def setup_friends
-			@user = current_user
 			@friend = User.find_by_id(params[:friendship][:friend_id])
 		end
 		

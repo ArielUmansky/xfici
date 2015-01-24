@@ -1,4 +1,4 @@
-<%= form_for(current_user.friendships.find_by_user_id_and_friend_id(current_user, @user), remote: true,
+<%= form_for(current_user.friendships.find_by_user_id_and_friend_id(current_user, @friend || @user), remote: true,
 	html: {method: :delete}) do |f| %>
 	<div><%= f.hidden_field :user_id %></div>
 	<div><%= f.hidden_field :friend_id %></div>

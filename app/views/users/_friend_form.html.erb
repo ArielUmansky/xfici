@@ -1,12 +1,13 @@
-<% unless current_user==@user %>
+<% other = @user || @friend %>
+<% unless current_user == other %>
 	<div id="friend_form">
-		<% if current_user.pending?(@user)%>
+		<% if current_user.pending?(other)%>
 			<%= render 'waiting_friendship' %>
 		<% else %>
-			<% if current_user.requested?(@user)%>
+			<% if current_user.requested?(other)%>
 				<%= render 'answer_friendship' %>
 			<% else %>
-				<% if !current_user.friend?(@user) %>
+				<% if !current_user.friend?(other) %>
 					<%= render 'request_friendship' %>
 				<% else %>
 					<%= render 'delete_friendship' %>
