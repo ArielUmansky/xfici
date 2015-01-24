@@ -14,6 +14,7 @@ group :development do
 	gem 'sqlite3', '1.3.5'
 	gem 'rspec-rails', '2.9.0'
 	gem 'annotate', '~> 2.4.1.beta'
+	gem 'pry'
 end
 
 # Gems used only for assets and not required
