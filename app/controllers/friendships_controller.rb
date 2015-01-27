@@ -5,36 +5,36 @@ class FriendshipsController < ApplicationController
 	def accept
 		if current_user.requested_friends.include?(@friend)
 			Friendship.accept(current_user, @friend)
-			flash[:notice] = "Friendship Accepted"
+			flash.now[:notice] = "Friendship Accepted"
 		else
-			flash[:notice] = "No Friendship Request"
+			flash.now[:notice] = "No Friendship Request"
 		end
 	end
 
 	def decline
 		if current_user.requested_friends.include?(@friend)
 			Friendship.breakup(current_user, @friend)
-			flash[:notice] = "Friendship Rejected"
+			flash.now[:notice] = "Friendship Rejected"
 		else
-			flash[:notice] = "No Friendship Request"
+			flash.now[:notice] = "No Friendship Request"
 		end
 	end
 
 	def cancel 
 		if current_user.pending_friends.include?(@friend)
       		Friendship.breakup(current_user, @friend)
-      		flash[:notice] = "Friendship Canceled"
+      		flash.now[:notice] = "Friendship Canceled"
     	else
-      		flash[:notice] = "No Friendship request"
+      		flash.now[:notice] = "No Friendship request"
     	end
   	end
 
 	def delete
 	    if current_user.friends.include?(@friend)
 	      Friendship.breakup(current_user, @friend)
-	      flash[:notice] = "Friendship Deleted"
+	      flash.now[:notice] = "Friendship Deleted"
 	    else
-	      flash[:notice] = "No Friendship request"
+	      flash.now[:notice] = "No Friendship request"
 	    end
 	    
 	end
@@ -44,6 +44,7 @@ class FriendshipsController < ApplicationController
 	end
 
 	def destroy 
+		#binding.pry
 		if current_user.friends.include?(@friend)
 			delete
 		else
@@ -56,6 +57,7 @@ class FriendshipsController < ApplicationController
 			end
 		end
 		respond_to do |format|
+			format.json { render json: @friend }
 			format.html { redirect_to @friend }
 			format.js
 		end
@@ -64,6 +66,7 @@ class FriendshipsController < ApplicationController
 	def update
 		accept
 		respond_to do |format|
+			format.json { render json: @friend }
 			format.html { redirect_to @friend }
 			format.js
 		end
@@ -72,6 +75,7 @@ class FriendshipsController < ApplicationController
 	def create
 		Friendship.request(current_user, @friend)
 		respond_to do |format|
+			format.json { render json: @friend }
 			format.html { redirect_to @friend }
 			format.js
 		end

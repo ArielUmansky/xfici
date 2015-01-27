@@ -6,24 +6,26 @@
 			<%= link_to "Delete", user, method: :delete, confirm: "You sure?" %>
 		<% end %>
 
-		<% if current_user.pending_friends.include?(user) %>
-			|
-			<%= link_to "Cancel Friendship", friendship_path(user, :friendship => { :friend_id => user.id }), method: :delete %>
-		<% else %>
-			<% if current_user.requested_friends.include?(user) %>
+	    <div class=<%= !current_user.pending_friends.include?(user) ? 'cancel-friendship hidden' : 'cancel-friendship' %> >
 				|
-				<%= link_to "Accept Friendship", friendship_path(user, :friendship => { :friend_id => user.id }), method: :put %>
+				<%= link_to "Cancel Friendship", "#", data: {friend: user.id}, class: "cancel-friendship-link" %>
+		</div>
+
+		<div class=<%= !current_user.requested_friends.include?(user) ? 'answer-friendship hidden' : 'answer-friendship' %> >
 				|
-				<%= link_to "Reject Friendship", friendship_path(user, :friendship => { :friend_id => user.id }), method: :delete %>
-			<% else %>
-				<% if current_user.friends.include?(user) %>
-					|
-					<%= link_to "Delete Friendship", friendship_path(user, :friendship => { :friend_id => user.id }), method: :delete %>
-				<% else %>
-					|
-					<%= link_to "Request Friendship", friendships_path(:friendship => { :friend_id => user.id }), method: :post %>
-				<% end %>
-			<% end %>
-		<% end %>
+				<%= link_to "Accept Friendship", "#", data: {friend: user.id}, class: "accept-friendship-link" %>
+				|
+				<%= link_to "Reject Friendship", "#", data: {friend: user.id}, class: "reject-friendship-link" %>
+		</div>
+
+		<div class=<%= !current_user.friends.include?(user) ? 'delete-friendship hidden' : 'delete-friendship' %> >
+				|
+				<%= link_to "Delete Friendship", "#", data: {friend: user.id}, class: "delete-friendship-link" %>
+		</div>
+
+		<div class=<%= (current_user.friends.include?(user) || current_user.requested_friends.include?(user) || current_user.pending_friends.include?(user))  ? 'request-friendship hidden' : 'request-friendship' %> >
+				|
+				<%= link_to "Request Friendship", "#", data: {friend: user.id}, class: "request-friendship-link" %>
+		</div>
 	<% end %>
 </li>
