@@ -2,7 +2,7 @@ Xfici::Application.routes.draw do
 
   devise_for :users
 
-  resources :users, only: [:show, :index, :destroy] do
+  resources :users, only: [:show, :index, :destroy, :edit, :update] do
     member do
       get :friends, :pending_friends, :requested_friends
     end
