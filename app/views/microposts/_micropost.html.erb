@@ -8,5 +8,5 @@
 		confirm: "You sure?",
 		title: micropost.content %>
 	<% end %>
-	<%= render partial "shared/like_links" %>
+	<%= render partial: "shared/vote", object: micropost %>
 </li>

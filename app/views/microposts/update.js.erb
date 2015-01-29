@@ -1,0 +1,1 @@
+$(".edit_micropost[id='edit_micropost_" + <%= @micropost.id %> + "']").parent().html("<%= escape_javascript(render 'shared/vote', object: @micropost) %>")

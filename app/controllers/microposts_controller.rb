@@ -21,7 +21,29 @@ class MicropostsController < ApplicationController
 	end
 
 	def update
-		binding.pry
+		@micropost = Micropost.find(params[:id])
+		@vote = params[:vote]
+		if @vote == 'cancel'
+			if @micropost.liked_by current_user
+				@micropost.unliked_by current_user
+			else
+				@micropost.undisliked_by current_user
+			end
+		else
+			if @vote=='true'
+				#binding.pry
+				@micropost.liked_by current_user
+			else
+				@micropost.disliked_by current_user
+			end
+		end
+		
+		#binding.pry
+		respond_to do |format|
+			format.json { render json: params}
+			format.html { redirect_to root_path }
+			format.js
+		end
 	end
 
 	private

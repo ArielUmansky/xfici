@@ -1,0 +1,21 @@
+<%= form_for(object) do |f| %>
+	<% if current_user.voted_as_when_voted_for object %>
+		<%= link_to "Unlike", micropost_path(object, {vote: 'cancel'}), remote: true, method: :put, 
+			class: "unlike-post-link" %>
+		- 
+		<%= link_to object.get_likes.size, "#", class: "count-like-post-link" %>
+		|
+		 Don't Like
+		-
+		<%= link_to object.get_dislikes.size, "#", class: "count-dislike-post-link" %>
+	<% else %>
+		Like
+		- 
+		<%= link_to object.get_likes.size, "#", class: "count-like-post-link" %>
+		|
+		<%= link_to "Cancel Don't Like", micropost_path(object, {vote: 'cancel'}), remote: true, method: :put,
+			 class: "undislike-post-link" %>
+		-
+		<%= link_to object.get_dislikes.size, "#", class: "count-dislike-post-link" %>
+	<% end %>
+<% end %>

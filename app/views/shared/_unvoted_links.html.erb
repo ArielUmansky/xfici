@@ -1,0 +1,11 @@
+<%= form_for(object) do |f| %>
+	<%= link_to "Like", micropost_path(object, {vote: :true}), remote:true, method: :put, 
+		class: "like-post-link" %>
+	- 
+	<%= link_to object.get_likes.size, "#", class: "count-like-post-link" %>
+	|
+	<%= link_to "Don't Like", micropost_path(object, {vote: :false}), remote:true, method: :put, 
+		class: "dislike-post-link" %>
+	-
+	<%= link_to object.get_dislikes.size, "#", class: "count-dislike-post-link" %>
+<% end %>

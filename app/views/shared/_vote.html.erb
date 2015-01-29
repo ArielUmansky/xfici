@@ -1,0 +1,9 @@
+<div class="vote_form">
+	<%= form_for(object) do |f| %>
+		<% if current_user.voted_for? object %>
+			<%= render 'shared/voted_links', object: object %>
+		<% else %>
+			<%= render 'shared/unvoted_links', object: object %>
+		<% end%>
+	<% end %>
+</div>
