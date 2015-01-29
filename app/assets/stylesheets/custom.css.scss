@@ -171,14 +171,14 @@ aside {
 .user_avatars {
 	overflow: auto;
 	margin-top: 10px;
-	.gravatar {
+	.avatar {
 		margin: 1px 1px;
 	}
 }
 
-.gravatar {
+.avatar {
 	float: left;
-	margin-right: 10px;
+	margin-right: 20px;
 }
 
 
@@ -239,10 +239,6 @@ input, textarea, select, .uneditable-input {
 	color: $grayLight;
 }
 
-.gravatar {
-	float: left;
-	margin-right: 10px;
-}
 aside {
 	textarea {
 		height: 100px;

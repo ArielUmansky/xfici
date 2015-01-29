@@ -6,13 +6,27 @@
 				<%= @user.name %>
 			</h1>
 		</section>
+		<section>
+			  <%= avatar_for(@user, 0) %>
+		</section>
+		<section>
+			<%= render 'shared/stats' %>
+		</section>
+		<% unless current_user!= @user %> 
+			<section>
+				<%= render 'shared/micropost_form' %>
+			</section>
+		<% end %>
+		<section>
+			<%= render 'shared/users_avatars', object: @user.friends %>
+		</section>
 	</aside>
 	<div class="span8">
-		<%= render 'friend_form' %>
+		<%= render 'friend_form' if user_signed_in?%>
 		<% if @user.microposts.any? %>
 			<h3>Microposts (<%= @user.microposts.count %>)</h3>
 			<ol class="microposts">
-				<%= render @microposts %>
+				<%= render partial: 'shared/feed_item', collection: @microposts %>
 			</ol>
 			<%= will_paginate @microposts %>
 		<% end %>

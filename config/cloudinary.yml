@@ -1,0 +1,18 @@
+development:
+  cloud_name: dwf4bsmoc
+  api_key: '952782852714591'
+  api_secret: RdW2l-DV7G48Urt0o-xkyitcKPk
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dwf4bsmoc
+  api_key: '952782852714591'
+  api_secret: RdW2l-DV7G48Urt0o-xkyitcKPk
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dwf4bsmoc
+  api_key: '952782852714591'
+  api_secret: RdW2l-DV7G48Urt0o-xkyitcKPk
+  enhance_image_tag: true
+  static_image_support: false

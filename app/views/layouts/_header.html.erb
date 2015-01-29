@@ -14,7 +14,8 @@
 							</a>
 						<ul class="dropdown-menu">
 							<li><%= link_to "Profile", user_path(current_user) %></li>
-							<li><%= link_to "Settings", edit_user_registration_path(current_user) %></li>
+							<li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+							<li><%= link_to "Manage Account", edit_user_registration_path(current_user) %></li>
 							<li class="divider"></li>
 							<li>
 								<%= link_to "Sign out", destroy_user_session_path, method: "delete" %>

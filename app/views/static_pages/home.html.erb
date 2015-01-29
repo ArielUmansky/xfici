@@ -10,6 +10,9 @@
 			<section>
 				<%= render 'shared/micropost_form' %>
 			</section>
+			<section>
+				<%= render 'shared/users_avatars', object: @user.friends %>
+			</section>
 		</aside>
 		<div class="span8">
 			<h3>Micropost Feed</h3>
