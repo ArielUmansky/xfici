@@ -20,6 +20,10 @@ class MicropostsController < ApplicationController
 		redirect_to root_path
 	end
 
+	def update
+		binding.pry
+	end
+
 	private
 
 		def correct_user

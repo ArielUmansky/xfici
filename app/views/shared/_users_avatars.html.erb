@@ -1,0 +1,7 @@
+<% if object.any? %>
+	<div class="user_avatars">
+		<% object.each do |user| %>
+			<%= link_to avatar_for(user, 30), user %>
+		<% end %>
+	</div>
+<% end %>

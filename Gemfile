@@ -6,8 +6,7 @@ gem 'devise', '> 1.1'
 gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'acts_as_votable', '~> 0.10.0'
 
 
 group :development do

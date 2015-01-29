@@ -1,0 +1,4 @@
+<%= form_form (micropost, remote: true, html:{ method: :put}) do |f| %>
+	<%= link_to "Like", "#", data: {vote: 'like', user: current_user.id}, class: "like-post-link" %>
+	<%= link_to "Dont Like", "#", data: {vote: 'like', user: current_user.id}, class: "dontlike-post-link" %>
+<% end %>

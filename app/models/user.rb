@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   attr_accessible :name, :fici_name, :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
+  acts_as_voter
+
   has_many :microposts, dependent: :destroy
 
   has_many :friendships, dependent: :destroy
