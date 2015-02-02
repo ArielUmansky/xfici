@@ -21,6 +21,9 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+
+    #Cloudinary::Uploader.upload(params[:user][:avatar], public_id: @user.email)
+
   end
 
   def index

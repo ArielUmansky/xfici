@@ -9,6 +9,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'carrierwave'
 gem 'cloudinary'
+gem 'mini_magick'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

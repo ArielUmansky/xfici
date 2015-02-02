@@ -36,4 +36,19 @@ $(document).ready(function(){
     hideAndShowFriendLinks($(e.target).data("friend"), "delete-friendship-link", "request-friendship", "DELETE", true)
  	$("#Friends").text(Number($("#Friends").text()) - 1)
  })
-})
+ function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('.imgPreview').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $(".imgInp").change(function(){
+      readURL(this);
+  });
+});

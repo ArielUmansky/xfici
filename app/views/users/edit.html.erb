@@ -12,8 +12,8 @@
       <%= f.text_field :email %>
   
       <div class="column">
-        <%= f.file_field :avatar %>
-        <%= image_tag(current_user.avatar.url, width: 100) %>
+        <%= f.file_field :avatar, class: "imgInp" %>
+        <%= image_tag(current_user.avatar.url, width: 100, height: 100, class: "imgPreview") %>
         <%= f.hidden_field :avatar_cache %> 
       </div>
 
