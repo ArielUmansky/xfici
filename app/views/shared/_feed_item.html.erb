@@ -3,14 +3,20 @@
 	<span class="user">
 		<%= link_to feed_item.user.name, feed_item.user %>
 	</span>
-	<span class="content"><%= feed_item.content %></span>
+	<span class="content">
+		<textarea <%= current_user!=feed_item.user ? "disabled" : "enabled" %>  
+			onkeyup="autoGrow(this);"><%= feed_item.content %></textarea>
+	</span>
 	<span class="timestamp">
 		Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
 	</span>
-	<% if current_user == feed_item.user %>
-		<%= link_to "delete", feed_item, method: :delete,
-		confirm: "You sure?",
-		title: feed_item.content %>
-	<% end %>
 	<%= render "shared/vote", object: feed_item %>
+	<% if current_user == feed_item.user %>
+		<span class="deleteLink">
+			<%= link_to "delete", feed_item, method: :delete,
+			confirm: "You sure?",
+			title: feed_item.content %>
+		</span>
+	<% end %>
+	<%= render "comments/comment", object: feed_item %>
 </li>

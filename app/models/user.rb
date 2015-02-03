@@ -17,6 +17,8 @@ mount_uploader :avatar, AvatarUploader
 
   has_many :friendships, dependent: :destroy
 
+  has_many :comments
+
   has_many :friends, :through => :friendships,
   					 :conditions => "status = 'accepted'",
   					 :order => :name

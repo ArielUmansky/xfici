@@ -8,7 +8,9 @@ Xfici::Application.routes.draw do
     end
   end
 
-  resources :microposts, only: [:create, :destroy, :update]
+  resources :microposts, only: [:create, :destroy, :update] do
+    resources :comments
+  end
 
   resources :friendships
 

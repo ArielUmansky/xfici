@@ -227,8 +227,33 @@ input, textarea, select, .uneditable-input {
 	list-style: none;
 	margin: 10px 0 0 0;
 	li {
+		clear: left;
+		height: 140px;
 		padding: 10px 0;
 		border-top: 1px solid #e8e8e8;
+	}
+	.content {
+		display: block;
+		textarea {
+			border: antiquewhite;
+			overflow: hidden;
+			width: 450px;
+			height: 30px;
+		}
+	}
+	.timestamp {
+		color: $grayLight;
+		float: left;
+		clear: left;
+		margin-left: 100px;
+			margin-right: 10px;
+	}
+	.deleteLink{
+		float: left;
+		margin-left: 20px;
+	}
+	.vote_form {
+		float: left;
 	}
 }
 
@@ -244,5 +269,45 @@ aside {
 	textarea {
 		height: 100px;
 		margin-bottom: 5px;
+	}
+}
+
+
+/* comments */
+
+.comments {
+	margin-left: 100px;
+	textarea {
+		float: left;
+		width: 400px;
+		rows: 1;
+	}
+	input {
+		float: left;
+		margin-left: 1cm;
+	}
+}
+
+.commentsList {
+	clear: left;
+	li {
+		list-style: none;
+		height: 10px;
+		margin-left: 50px;
+		width: 450px;
+	}
+	.content {
+		display: block;
+		textarea {
+			border: antiquewhite;
+			overflow: hidden;
+			width: 380px;
+		}
+	}
+	.timestamp {
+		color: $grayLight;
+		margin-left: 70px;
+		float: left;
+		clear: left
 	}
 }
