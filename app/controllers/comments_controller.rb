@@ -16,4 +16,13 @@ class CommentsController < ApplicationController
 		redirect_to root_path
 	end
 
+	def update 
+		@comment = Comment.find(params[:id])
+		@comment.update_attributes(params[:comment])
+		respond_to do |format|
+			format.html { redirect_to root_path }
+			format.json { render json: @comment }
+		end
+	end
+
 end

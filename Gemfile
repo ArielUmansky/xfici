@@ -10,6 +10,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'mini_magick'
+gem 'best_in_place'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

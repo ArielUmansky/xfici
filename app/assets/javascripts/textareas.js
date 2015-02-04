@@ -6,7 +6,3 @@ function autoGrow (oField) {
     oField.style.height = oField.scrollHeight + "px";
   }
 }
-
-$(document).ready(function(){
-
-})

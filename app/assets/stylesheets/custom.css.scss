@@ -240,6 +240,12 @@ input, textarea, select, .uneditable-input {
 			width: 450px;
 			height: 30px;
 		}
+		pre {
+			margin-left: 100px;
+			background-color: white;
+			border-color: white;
+			width: 500px;
+		}
 	}
 	.timestamp {
 		color: $grayLight;
@@ -302,6 +308,10 @@ aside {
 			border: antiquewhite;
 			overflow: hidden;
 			width: 380px;
+		}
+		pre {
+			margin-left: 65px;
+			width: 370px;
 		}
 	}
 	.timestamp {

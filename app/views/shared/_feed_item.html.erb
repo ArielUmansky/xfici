@@ -4,8 +4,11 @@
 		<%= link_to feed_item.user.name, feed_item.user %>
 	</span>
 	<span class="content">
-		<textarea <%= current_user!=feed_item.user ? "disabled" : "enabled" %>  
-			onkeyup="autoGrow(this);"><%= feed_item.content %></textarea>
+	  <% if current_user != feed_item.user %>
+	      <pre><%= feed_item.content %></pre>
+	  <% else %>
+	      <pre><%=best_in_place feed_item, :content %></pre>
+	  <% end %>
 	</span>
 	<span class="timestamp">
 		Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
