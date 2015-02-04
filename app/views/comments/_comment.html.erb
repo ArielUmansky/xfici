@@ -1,43 +1,33 @@
-<% #corchetes en el form_for como resultado de tener a los comentarios relacionados a los microposts en routes.rb %>
-  <%= form_for([object, object.comments.build]) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <div class="comments">
-      <%= f.text_area :content, placeholder: "Post a comment...", rows: "1", cols: "1" %>
-      <%= f.submit "Post", class: "btn btn-large btn-primary" %>
-    </div >
-  <% end %>
-
-  <div class="commentsList">
-    <% if object.comments.any? %>
-      <ul>
-        <% object.comments.each do |comment| %>
-          <% if (!comment.id.nil?) %>
-            <li>
-              <%= link_to avatar_for(comment.user, 50), comment.user  %>
-              <span class="user">
-                <%= link_to comment.user.name, comment.user %>
-              </span>
-              <span class="content">
-              <% if current_user != comment.user %>
-                  <pre><%= comment.content %></pre>
-              <% else %>
-                  <pre><%=best_in_place [comment.micropost, comment], :content %></pre>
+<div class="commentsList", data=<%=object.id%> >
+  <% if object.comments.any? %>
+    <ul>
+      <% object.comments.each do |comment| %>
+        <% if (!comment.id.nil?) %>
+          <li>
+            <%= link_to avatar_for(comment.user, 50), comment.user  %>
+            <span class="user">
+              <%= link_to comment.user.name, comment.user %>
+            </span>
+            <span class="content">
+            <% if current_user != comment.user %>
+                <pre><%= comment.content %></pre>
+            <% else %>
+                <pre><%=best_in_place [comment.micropost, comment], :content %></pre>
+            <% end %>
+            </span>
+            <span class="timestamp">
+              Posted <%= time_ago_in_words(comment.created_at) %> ago.
+            </span>
+              <% if current_user == comment.user %>
+                <span class="deleteLink">
+                  <%= link_to "delete", [comment.micropost, comment],
+                    method: :delete,
+                    title: comment.content, remote: true %>
+                </span>
               <% end %>
-              </span>
-              <span class="timestamp">
-                Posted <%= time_ago_in_words(comment.created_at) %> ago.
-              </span>
-                <% if current_user == comment.user %>
-                  <span class="deleteLink">
-                    <%= link_to "delete", [comment.micropost, comment],
-                      method: :delete,
-                      confirm: "You sure?",
-                      title: comment.content %>
-                  </span>
-                <% end %>
-            </li>
-          <% end %>
+          </li>
         <% end %>
-      </ul>
-    <% end %>
-  </div>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

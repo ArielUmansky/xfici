@@ -17,7 +17,10 @@ class MicropostsController < ApplicationController
 	def destroy
 		@micropost.destroy
 		flash[:notice] = "Micropost deleted!"
-		redirect_to root_path
+		respond_to do |format| 
+			format.html { redirect_to root_path }
+			format.js
+		end
 	end
 
 	def update

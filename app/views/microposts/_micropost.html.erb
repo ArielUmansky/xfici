@@ -5,9 +5,10 @@
 	</span>
 	<% if current_user == micropost.user %>
 		<%= link_to "delete", micropost, method: :delete,
-		confirm: "You sure?",
+		remote: true,
 		title: micropost.content %>
 	<% end %>
 	<%= render partial: "shared/vote", object: micropost %>
+	<%= render partial: "comments/comment_input", object: micropost %>
 	<%= render partial: "comments/comment", object: micropost %>
 </li>

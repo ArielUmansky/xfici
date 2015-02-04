@@ -1,0 +1,1 @@
+$(".commentsList[data="+ <%= @micropost.id %> + "]" ).html("<%= escape_javascript(render 'comments/comment', object: @micropost) %>")

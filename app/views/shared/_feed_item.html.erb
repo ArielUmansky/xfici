@@ -17,9 +17,10 @@
 	<% if current_user == feed_item.user %>
 		<span class="deleteLink">
 			<%= link_to "delete", feed_item, method: :delete,
-			confirm: "You sure?",
+			remote: true,
 			title: feed_item.content %>
 		</span>
 	<% end %>
+	<%= render "comments/comment_input", object: feed_item %>
 	<%= render "comments/comment", object: feed_item %>
 </li>

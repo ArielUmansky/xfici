@@ -1,0 +1,8 @@
+<% #corchetes en el form_for como resultado de tener a los comentarios relacionados a los microposts en routes.rb %>
+  <%= form_for([object, object.comments.build], remote: :true) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="comments">
+      <%= f.text_area :content, placeholder: "Post a comment...", rows: "1", cols: "1" %>
+      <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+    </div >
+  <% end %>
